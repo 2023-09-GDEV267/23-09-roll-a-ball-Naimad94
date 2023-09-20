@@ -57,7 +57,15 @@ public class PlayerController : MonoBehaviour
         Vector3 movement = new Vector3(movementX, 0.0f, movementY); //f signifies it's a float value.
         
         rb.AddForce(movement * speed); //were multiplying the force.
+    }
 
+    //OnTriggerEnter will be called by Unity when the player GameObject first touches a trigger collider.
+    //It will be given a refrence to the trigger collider that has been touched.
+    //That is the collider called "other".
+    //This refrence gives you a way to identify the colliders that the GameObject hits.
+    void OnTriggerEnter(Collider other)
+    {
+        other.gameObject.setActive(false); //To disable it we used the method setActive which only accepts boolean value inside the parenthesis.
     }
 
 }
@@ -80,3 +88,6 @@ public class PlayerController : MonoBehaviour
 *   Vector3 Variables stores data accross 3 axis (X,Y,Z so im guessing that mean 3D)
 *   Vector2 I'm guessing is for 2 axis? (X and Y (2D))
 **/
+
+//OnTriggerEnter function allows detection and test collision on players GameObject collider.
+//OnTrigger function will detect the contact between the player GameObject and the pickup GameObjects without creating a physical collision.

@@ -17,7 +17,7 @@ public class Rotator : MonoBehaviour
         //this has two initial parameters, one using a Vector3 variable and the other using three float values for (X, Y and Z).
         //Using Vector3 parameter.
         //For smoothness and framerate dependent we multiply by deltaTime.
-        transform.Rotate (new Vector3 (15, 30, 45) * deltaTime);
+        transform.Rotate (new Vector3 (15, 30, 45) * Time.deltaTime);
         
     }
 }
