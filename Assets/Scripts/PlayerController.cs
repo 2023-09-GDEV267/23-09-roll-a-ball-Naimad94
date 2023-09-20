@@ -65,7 +65,7 @@ public class PlayerController : MonoBehaviour
     //This refrence gives you a way to identify the colliders that the GameObject hits.
     void OnTriggerEnter(Collider other)
     {
-        other.gameObject.setActive(false); //To disable it we used the method setActive which only accepts boolean value inside the parenthesis.
+        other.gameObject.SetActive(false); //To disable it we used the method setActive which only accepts boolean value inside the parenthesis.
     }
 
 }
