@@ -65,7 +65,10 @@ public class PlayerController : MonoBehaviour
     //This refrence gives you a way to identify the colliders that the GameObject hits.
     void OnTriggerEnter(Collider other)
     {
-        other.gameObject.SetActive(false); //To disable it we used the method setActive which only accepts boolean value inside the parenthesis.
+        if(other.gameObject.CompareTag("PickUp")) //PickUp is the comparison in this case.
+        {
+            other.gameObject.SetActive(false); //To disable it we used the method setActive which only accepts boolean value inside the parenthesis.
+        }
     }
 
 }
@@ -91,3 +94,5 @@ public class PlayerController : MonoBehaviour
 
 //OnTriggerEnter function allows detection and test collision on players GameObject collider.
 //OnTrigger function will detect the contact between the player GameObject and the pickup GameObjects without creating a physical collision.
+
+//Compare Tag can compare the tag of any GameObject to a string value ("PickUp").
