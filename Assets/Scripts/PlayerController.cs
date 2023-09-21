@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour
 
     //private variables will not be accessible from the inspector in Unity or other scripts.
     private Rigidbody rb; //creates a private variable type Rigidbody called rb.
+
+    private int count; //becuase it's private will not be able to manipulate in the inspector module.
     
 
     //float is used for precision then whole number or integer value.
@@ -29,6 +31,7 @@ public class PlayerController : MonoBehaviour
     void Start() //when game starts.
     {
         rb = GetComponent<Rigidbody>(); //sets value of variable rb by getting refrence to the Rigidbody component attached to the playersphere GameObject.
+        count = 0;
         
     }
 
@@ -68,6 +71,7 @@ public class PlayerController : MonoBehaviour
         if(other.gameObject.CompareTag("PickUp")) //PickUp is the comparison in this case.
         {
             other.gameObject.SetActive(false); //To disable it we used the method setActive which only accepts boolean value inside the parenthesis.
+            count = count + 1; //can be written in count =+ 1??
         }
     }
 
@@ -96,3 +100,8 @@ public class PlayerController : MonoBehaviour
 //OnTrigger function will detect the contact between the player GameObject and the pickup GameObjects without creating a physical collision.
 
 //Compare Tag can compare the tag of any GameObject to a string value ("PickUp").
+
+/** Any gameobject with collider and rigidBody is considered dynamic so unity wont treat is as static or stationary. 
+*   If it was static it would take unity longer each frame to calculate the phgysics and it would do this each frame
+*   because the cubes are constantly rotating.
+**/
