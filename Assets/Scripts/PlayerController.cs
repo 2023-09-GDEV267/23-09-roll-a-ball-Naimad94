@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem; //Added new namespace.
+using TMPro; //Added new namespace/ import package.
 
 /**
 *   4 namespaces above are: System.Collections, System.Collections.Generic,
@@ -11,6 +12,9 @@ using UnityEngine.InputSystem; //Added new namespace.
 public class PlayerController : MonoBehaviour
 {
     public float speed = 0; //Should be accessible and visible in the inspector module becuase it was set to public.
+
+    public TextMeshProUGUI countText;
+    public GameObject winTextObject;
 
 
     //private variables will not be accessible from the inspector in Unity or other scripts.
@@ -32,7 +36,9 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>(); //sets value of variable rb by getting refrence to the Rigidbody component attached to the playersphere GameObject.
         count = 0;
-        
+
+        SetCountText();
+        winTextObject.SetActive(false);
     }
 
     //Created function declaration (aka method?).
@@ -54,6 +60,18 @@ public class PlayerController : MonoBehaviour
         movementY = movementVector.y;
     }
 
+    //This function must be called after the line of code setting the count variable's value within the start function.
+    //Count needs to have a value that can be used to set the UI Text.
+    void SetCountText()
+    {
+        countText.text = "Count: " + count.ToString();
+
+        if(count >= 3)
+        {
+            winTextObject.SetActive(true);
+        }
+    }
+
     //FixedUpdate is called just before performing physics calculations(Physics code).
     void FixedUpdate()
     {
@@ -72,9 +90,10 @@ public class PlayerController : MonoBehaviour
         {
             other.gameObject.SetActive(false); //To disable it we used the method setActive which only accepts boolean value inside the parenthesis.
             count = count + 1; //can be written in count =+ 1??
+
+            SetCountText(); //Will update UI Component text everytime the count variable is incremented after the player collects the cube.
         }
     }
-
 }
 
 
